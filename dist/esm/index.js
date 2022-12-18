@@ -72,7 +72,7 @@ export const search = async (query) => {
 export const detail = async (linkId) => {
     let result;
     // Valid regular expression for kiryuu maybe :)
-    const REGEX_URL = /http?s:\/\/(kiryuu.id)\/?(manga\/)?\//;
+    const REGEX_URL = /http?s:\/\/kiryuu.id?(\/manga\/)?(\/)?/;
     const isKiryuu = linkId.match(REGEX_URL) ? true : false;
     if (isKiryuu) {
         linkId = linkId.replace(REGEX_URL, "").split("/").join("");
@@ -105,7 +105,7 @@ export const detail = async (linkId) => {
     }
     else {
         data = await axios.get(MANGA_CHAPTER_URL(linkId), Config);
-        if (data.data && data.data.content) {
+        if (data.data && data.data.content.length) {
             delete data.data["pages"];
             result = { succeed: true, ...data.data };
         }
