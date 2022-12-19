@@ -1,6 +1,6 @@
 # kiryuu-scraper
 
-!**Get comic data from kiryuu api**
+**Get comic data from kiryuu api**
 ![](https://s1.zerochan.net/Sousou.no.Frieren.600.3396173.jpg)
 
 ## How to use
@@ -152,3 +152,6 @@ console.log(A, B);
   content: String[Array], // eg ["https://xxx/xxx.jpg"]
 }
 ```
+## TODO
+- [ ] Add convert image to PDF file/buffer 
+- [ ] Make code more readable
