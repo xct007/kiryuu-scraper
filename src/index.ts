@@ -7,7 +7,7 @@ import {
 	SEARCH_URL,
 	MANGA_URL,
 	MANGA_CHAPTER_URL,
-} from "./utils.js";
+} from "./utils";
 
 /**
  * Get comic detail
@@ -110,7 +110,7 @@ export const detail = async (linkId: string): Promise<object> => {
 		return result;
 	}
 	let data: any = await axios.get(MANGA_URL(linkId), Config);
-	if (data.data && data.data.chapters.length) {
+	if (data.data && (Array.isArray(data.data.chapters) && data.data.chapters.length)) {
 		const _data = data.data;
 		let Ch: {
 			chapter: string;
@@ -123,7 +123,8 @@ export const detail = async (linkId: string): Promise<object> => {
 				url: BASE_URL + i.slug,
 			});
 		}
-		_data["subtitle"] = _data["subtitle"].replace(/\n/g, "").replace(/\t/g, "");
+		// kiryuu.id admin remove subtitle ?
+		// _data["subtitle"] = _data["subtitle"].replace(/[\n\t]/g, "");
 		delete _data["chapters"];
 		result = {
 			succeed: true,

@@ -93,7 +93,7 @@ const detail = async (linkId) => {
         return result;
     }
     let data = await axios_1.default.get((0, utils_js_1.MANGA_URL)(linkId), utils_js_1.Config);
-    if (data.data && data.data.chapters.length) {
+    if (data.data && (Array.isArray(data.data.chapters) && data.data.chapters.length)) {
         const _data = data.data;
         let Ch = [];
         for (const i of _data.chapters) {
@@ -103,7 +103,8 @@ const detail = async (linkId) => {
                 url: utils_js_1.BASE_URL + i.slug,
             });
         }
-        _data["subtitle"] = _data["subtitle"].replace(/\n/g, "").replace(/\t/g, "");
+        // kiryuu.id admin remove subtitle ?
+        // _data["subtitle"] = _data["subtitle"].replace(/[\n\t]/g, "");
         delete _data["chapters"];
         result = {
             succeed: true,

@@ -13,7 +13,7 @@ exports.Config = {
     headers: {
         "User-Agent": "Dart/2.8 (dart:io)",
         "Content-Type": "application/json",
-        "Accept-Encoding": "gzip",
+        "Accept-Encoding": "deflate",
         "Content-Length": 0,
     },
 };
